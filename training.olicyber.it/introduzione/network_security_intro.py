@@ -54,6 +54,7 @@ print(requests.post("http://web-08.challs.olicyber.it/login",
 					headers = headers,
 					data = data).text)
 
+
 #challenge9
 # XML e JSON sono molto piu moderni e facili da usare specialmente
 # con JavaScript
@@ -72,33 +73,54 @@ print(requests.post("http://web-09.challs.olicyber.it/login",
 					data = json.dumps(data)).text)
 
 
-
-
-
-
-
-'''
-
-
-
+#challenge10
 # compatto
 # print((requests.options('http://web-10.challs.olicyber.it/')).headers.get('Allow'))
 
-response = requests.options('http://web-10.challs.olicyber.it/')
+# response = requests.options('http://web-10.challs.olicyber.it/')
 # per stampare tutti gli headers
 # print(response.headers)
 
 # per stampare header 'Allow' uso il metodo get per la chiave
-print('Allowed methods: ' + response.headers.get('Allow') + '\n')
+# print('Allowed methods: ' + response.headers.get('Allow') + '\n')
 
-
-methods = ['put', 'patch', 'post']
+'''
+'''
+methods = ['get', 'put', 'patch']
 for method in methods:
 	print(f'METHOD: {method}')
 	response = requests.request(method, 'http://web-10.challs.olicyber.it/')
 	for key, val in response.headers.items():
 		print(f'\t-> {key}: {val}')
+print('')
+'''
+'''
+print(requests.put('http://web-10.challs.olicyber.it/').headers.get('X-Flag'))
 
 
+#challenge11
+flag = ""
+csrf_token = None
+s = requests.Session()
+response = s.post('http://web-11.challs.olicyber.it/login', json={'username':'admin', 'password':'admin'})
+# da controllare uso di [] e di () con items() (???)
+if response.status_code == 200:
+	csrf_token = response.json()['csrf']
+else:
+	print("Impossibile accedere al sito")
+	exit(1)
+	
+for index in range(4):
+	response = s.get('http://web-11.challs.olicyber.it/flag_piece', params={'index': index, 'csrf': csrf_token})
+	if response.status_code == 200:
+		csrf_token = response.json()['csrf']
+		flag += response.json()['flag_piece']	
+	else:
+		print("Impossibile accedere alla risorsa")
+		exit(1)
+print(flag)
+
+
+'''
 
 
