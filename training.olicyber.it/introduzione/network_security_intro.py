@@ -1,5 +1,6 @@
 import requests
 import json
+from bs4 import BeautifulSoup, Comment
 
 '''
 #challenge1
@@ -121,6 +122,59 @@ for index in range(4):
 print(flag)
 
 
+#challenge12
+# creo un oggetto Soup dove prendo il corpo della response e 
+# utilizzo un parser (html.parser) per interpretare la stringa
+soup = BeautifulSoup(requests.get('http://web-12.challs.olicyber.it/').text, 'html.parser')
+
+# cerco in soup tutti i paragrafi.
+# p e' una lista di oggetti BeautifulSoup
+
+#	p = [
+#   	 <p>Challenge 1</p>,
+#   	 <p>Challenge 2</p>
+#	]
+
+# per accedere p[<numero_oggetto>]
+
+p = soup.find_all('p')
+for _ in p:
+	# per accedere al contenuto dell'oggetto beautifulsoup.tag
+	# uso .text (diverso da .text di requests)
+	if 'flag' in _.text:
+		print(_.text)
+
+
+#challenge13
+flag = 'flag{'
+soup = BeautifulSoup(requests.get('http://web-13.challs.olicyber.it/').text, 'html.parser')
+p = soup.find_all('span')
+for _ in p:
+	flag += _.text 
+flag += '}'
+print(flag)
+
+
+#challenge14
+soup = BeautifulSoup(requests.get('http://web-14.challs.olicyber.it/').text, 'html.parser')
+
+# def is_comment(text):
+#	return isinstance(text, Comment)
+
+# non serve specificare l'argomento perche viene passato automaticamente dal
+# oggetto chiamante (in questo caso soup)
+# comments = soup.find_all(string = is_comment)
+
+# lambda expression
+comments = soup.find_all(string=lambda text: isinstance(text, Comment))
+for comment in comments:
+	if 'flag' in comment:
+		print(comment)
+
 '''
+
+
+
+
 
 
