@@ -284,6 +284,7 @@ def is_comment(text):
 comments = soup.find_all(string = is_comment)
 '''
 
+'''
 
 # challenge15
 # target: the flag is contained in one of the external resources. Find it
@@ -300,3 +301,4 @@ for script in scripts:
 for path in paths:
 	response = requests.get(urljoin('http://web-15.challs.olicyber.it/', path)).text
 	print(find_flag(response))
+'''
