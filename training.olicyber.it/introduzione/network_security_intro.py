@@ -13,13 +13,16 @@ def find_flag(text):
 # target: flag is in the body of the url
 print(requests.get("http://web-01.challs.olicyber.it/").text)
 
+
 # challenge2
 # target: flag is accessible via url param id
 print(requests.get("http://web-02.challs.olicyber.it/server-records", params = {'id': 'flag'}).text)
 
+
 # challenge3
 # target: flag is accessible via custom header X-Password
 print(requests.get("http://web-03.challs.olicyber.it/flag", headers = {'X-Password': 'admin'}).text)
+
 
 # challenge4
 # target: flag is accessible via custom Accept header
@@ -28,9 +31,11 @@ print(requests.get("http://web-03.challs.olicyber.it/flag", headers = {'X-Passwo
 response = requests.get("http://web-04.challs.olicyber.it/users", headers = {'Accept': 'application/xml'}).text
 print(find_flag(response))
 
+
 # challenge5
 # target: flag is accessible via custom Cookies header
 print(requests.get("http://web-05.challs.olicyber.it/flag", cookies = {'password': 'admin'}).text)
+
 
 # challenge6
 # target: using Session obj, we download a session cookie connecting to /token
@@ -45,6 +50,7 @@ print(s.get('http://web-06.challs.olicyber.it/flag').text)
 # per visualizzare un cookie specifico:
 	>	print(response.cookies.get('token'))
 '''
+
 
 # challenge7
 # target: flag is stored in one of the response header 
@@ -65,6 +71,7 @@ In alternativa:
 .keys()		> accedo a .key
 .values()	> accedo a .value
 '''
+
 
 # challenge8
 # target: flag is accessible via post request and urlencoded login data
@@ -91,6 +98,7 @@ la librerira requests semplifica l'invio del formato tramite l'uso di un
 dizionario
 '''
 
+
 # challenge9
 # target: flag is accessible via post request and json login data
 
@@ -113,6 +121,7 @@ Automaticamente possiamo scrivere come argomento json=data
 e viene assegnato automaticamente l'header content-type json. 
 Manualmente la soluzione e' mostrata sopra.
 '''
+
 
 # challenge10
 # target: flag is accessible via not allowed request method
@@ -219,56 +228,65 @@ tramite:
 
 
 # challenge12
+# target: flag is contained into a paragraph <p> .... </p>
+
 # creo un oggetto Soup dove prendo il corpo della response e
 # utilizzo un parser (html.parser) per interpretare la stringa
 soup = BeautifulSoup(requests.get('http://web-12.challs.olicyber.it/').text, 'html.parser')
 
 # cerco in soup tutti i paragrafi.
-# p e' una lista di oggetti BeautifulSoup
+pars = soup.find_all('p')
+# pars e' una lista di oggetti BeautifulSoup
 
-#	p = [
+#	pars = [
 #   	 <p>Challenge 1</p>,
 #   	 <p>Challenge 2</p>
 #	]
 
-# per accedere p[<numero_oggetto>]
+# per accedere pars[<numero_oggetto>]
 
-p = soup.find_all('p')
-for _ in p:
+for p in pars:
 	# per accedere al contenuto dell'oggetto beautifulsoup.tag
 	# uso .text (diverso da .text di requests)
-	if 'flag' in _.text:
-		print(_.text)
+	if 'flag' in p.text:
+		print(find_flag(p.text))
 
 
-#challenge13
+# challenge13
+# target: flag is composed by all bold letters in the paragraphs
 flag = 'flag{'
 soup = BeautifulSoup(requests.get('http://web-13.challs.olicyber.it/').text, 'html.parser')
-p = soup.find_all('span')
-for _ in p:
-	flag += _.text
+
+spans = soup.find_all('span')
+for s in spans:
+	flag += s.text
 flag += '}'
 print(flag)
 
 
-#challenge14
+# challenge14
+# target: flag is in a comment
 soup = BeautifulSoup(requests.get('http://web-14.challs.olicyber.it/').text, 'html.parser')
 
-# def is_comment(text):
-#	return isinstance(text, Comment)
-
-# non serve specificare l'argomento perche viene passato automaticamente dal
-# oggetto chiamante (in questo caso soup)
-# comments = soup.find_all(string = is_comment)
-
-# lambda expression
+# LAMBDA expression:
+# non serve specificare l'argomento text perche viene passato automaticamente
+# dall'oggetto chiamante (in questo caso soup)
 comments = soup.find_all(string=lambda text: isinstance(text, Comment))
 for comment in comments:
 	if 'flag' in comment:
-		print(comment)
+		print(find_flag(comment))
+
+''' NOTE:
+Metodo alternativo:
+
+def is_comment(text):
+	return isinstance(text, Comment)
+comments = soup.find_all(string = is_comment)
+'''
 
 
-
+# challenge15
+# target: the flag is contained in one of the external resources. Find it
 soup = BeautifulSoup(requests.get('http://web-15.challs.olicyber.it/').text, 'html.parser')
 links = soup.find_all('link')
 scripts = soup.find_all('script')
@@ -281,8 +299,4 @@ for script in scripts:
 
 for path in paths:
 	response = requests.get(urljoin('http://web-15.challs.olicyber.it/', path)).text
-	start = response.find('flag{')
-	end = response.find('}', start)
-	
-	if (start != -1) and (end != -1): 
-		print(response[start:(end + 1)])
+	print(find_flag(response))
