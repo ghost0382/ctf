@@ -152,26 +152,73 @@ print(requests.put('http://web-10.challs.olicyber.it/').headers.get('X-Flag'))
 flag = ''
 csrf_token = None
 s = requests.Session()
-response = s.post('http://web-11.challs.olicyber.it/login', json={'username':'admin', 'password':'admin'})
-# da controllare uso di [] e di () con items() (???)
+response = s.post('http://web-11.challs.olicyber.it/login',
+					json={'username':'admin', 'password':'admin'})
+
 if response.status_code == 200:
-	csrf_token = response.json()['csrf']
+	csrf_token = response.json().get('csrf')
 else:
 	print("Impossibile accedere al sito")
 	exit(1)
 
 for index in range(4):
-	response = s.get('http://web-11.challs.olicyber.it/flag_piece', params={'index': index, 'csrf': csrf_token})
+	response = s.get('http://web-11.challs.olicyber.it/flag_piece',
+						params={'index': index, 'csrf': csrf_token})
+
 	if response.status_code == 200:
-		csrf_token = response.json()['csrf']
-		flag += response.json()['flag_piece']
+		csrf_token = response.json().get('csrf')
+		flag += response.json().get('flag_piece')
 	else:
 		print("Impossibile accedere alla risorsa")
 		exit(1)
 print(flag)
 
+''' NOTE:
+In questa challenge non c'e' una simulazione vera e propria di
+attacco.
+Quello e' stato fatto e' imparare ad utilizzare il CSRF token
+per autenticarci ad ogni GET su un determinato sito.
 
-#challenge12
+MEMENTO: le risorse installate sul browser di un utente non sono
+accessibili in lettura da terzi. Solo ed esclusivamente dall'utente
+
+SCENARIO:
+. Attaccante vuole che a Vittima venga eliminato l'account su "banca.it"
+tramite:
+
+	POST https://banca.it/account/delete
+
+. Vittima si connette a "banca.it"
+
+. "banca.it" risponde a Vittima con:
+	Set-Cookie: sessionid=abc123
+
+. Se Vittima clicca sulla richiesta ingannevola dell'attaccante viene
+  inviata questa richeista perche' il browser allega automaticamente
+  il cookie installato precedentemente, non essendo in grado di
+  distinguere se la richeista e' stata generata da Vittima o dal sito
+  di Attaccante.
+  
+	POST /account/delete HTTP/1.1
+	Host: banca.it
+	Cookie: sessionid=abc123
+	
+. Introducento il token CSRF (Cross-Site Request Forge), la richiesta
+  effettuata con l'inganno da parte dell'Attaccante non andrebbe piu a
+  buon fine poiche' il token non verebbe automaticamente allegato come
+  invece succede con il cookie.
+  Questo perche' e' protetto dalla SOP (Same-Origin Policy) ovvero,
+  l'impossibilita' di siti terzi di accededere alle risorse di un altro
+  sito (es sito-malevolo.it NON puo' accedere alle risorse di banca.it)
+  Il cookie viene allegato automaticamente se la richiesta risulta
+  compatibile, il CSRF no.
+  
+  L'utente sarebbe in grado di accedere correttamente perche' trovandosi
+  all'interno di banca.it, il CSRF viene allegato autoamticamente.
+'''
+
+
+# challenge12
 # creo un oggetto Soup dove prendo il corpo della response e
 # utilizzo un parser (html.parser) per interpretare la stringa
 soup = BeautifulSoup(requests.get('http://web-12.challs.olicyber.it/').text, 'html.parser')
