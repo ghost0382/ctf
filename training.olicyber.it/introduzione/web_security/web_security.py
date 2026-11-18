@@ -273,7 +273,7 @@ soup = BeautifulSoup(requests.get('http://web-14.challs.olicyber.it/').text, 'ht
 # dall'oggetto chiamante (in questo caso soup)
 comments = soup.find_all(string=lambda text: isinstance(text, Comment))
 for comment in comments:
-	if 'flag' in comment:
+	if 'flag{' in comment:
 		print(find_flag(comment))
 
 ''' NOTE:
