@@ -46,7 +46,7 @@ while to_visit:
 	
 	# debug =======================================================
 	print(
-		f"Currently in site {current_url} (request n: {len(visited)}). Total discovered: {len(discovered)}", end = '\r')
+		f"Requests n: {len(visited)} @ {current_url}. Total sites discovered: {len(discovered)}.", end = '\r')
 	# =============================================================
 
 
