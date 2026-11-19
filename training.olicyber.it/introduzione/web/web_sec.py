@@ -2,7 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup, Comment
 from urllib.parse import urljoin
-import re
+
 
 def find_flag(text):
 	start = text.find('flag{')
@@ -39,7 +39,7 @@ print(requests.get("http://web-05.challs.olicyber.it/flag", cookies = {'password
 
 # challenge6
 # target: using Session obj, we download a session cookie connecting to /token
-# then we access /flag 
+# then we access /flag
 s = requests.Session()
 s.get('http://web-06.challs.olicyber.it/token')
 print(s.get('http://web-06.challs.olicyber.it/flag').text)
@@ -53,7 +53,7 @@ print(s.get('http://web-06.challs.olicyber.it/flag').text)
 
 
 # challenge7
-# target: flag is stored in one of the response header 
+# target: flag is stored in one of the response header
 response = requests.head("http://web-07.challs.olicyber.it/")
 for key, value in response.headers.items():
 	if 'flag' in value:
@@ -118,7 +118,7 @@ print(find_flag(response))
 XML e JSON sono molto piu moderni e facili da usare specialmente
 con JavaScript.
 Automaticamente possiamo scrivere come argomento json=data
-e viene assegnato automaticamente l'header content-type json. 
+e viene assegnato automaticamente l'header content-type json.
 Manualmente la soluzione e' mostrata sopra.
 '''
 
@@ -127,7 +127,7 @@ Manualmente la soluzione e' mostrata sopra.
 # target: flag is accessible via not allowed request method
 
 
-''' NOTE: 
+''' NOTE:
 Con option ottengo i metodi disponibili:
 # print(requests.options('http://web-10.challs.olicyber.it/'))
 
@@ -157,7 +157,7 @@ print(requests.put('http://web-10.challs.olicyber.it/').headers.get('X-Flag'))
 # target: flag is optainable by loggin at /login to get session cookie
 # and csrf token and requesting each piece of flag using index + new
 # csrf token
- 
+
 flag = ''
 csrf_token = None
 s = requests.Session()
@@ -207,11 +207,11 @@ tramite:
   il cookie installato precedentemente, non essendo in grado di
   distinguere se la richeista e' stata generata da Vittima o dal sito
   di Attaccante.
-  
+
 	POST /account/delete HTTP/1.1
 	Host: banca.it
 	Cookie: sessionid=abc123
-	
+
 . Introducento il token CSRF (Cross-Site Request Forge), la richiesta
   effettuata con l'inganno da parte dell'Attaccante non andrebbe piu a
   buon fine poiche' il token non verebbe automaticamente allegato come
@@ -221,7 +221,7 @@ tramite:
   sito (es sito-malevolo.it NON puo' accedere alle risorse di banca.it)
   Il cookie viene allegato automaticamente se la richiesta risulta
   compatibile, il CSRF no.
-  
+
   L'utente sarebbe in grado di accedere correttamente perche' trovandosi
   all'interno di banca.it, il CSRF viene allegato autoamticamente.
 '''
@@ -301,3 +301,71 @@ for path in paths:
 	response = requests.get(urljoin('http://web-15.challs.olicyber.it/', path)).text
 	if 'flag{' in response:
 		print(find_flag(response))
+
+
+
+# challenge16
+# target: 
+
+# restituisce il titolo della pagina
+def h1_scrape(webpage):
+
+	return webpage.find('h1')
+
+# restituisce una lista di path snippati per continuare la ricerca
+def href_scrape(webpage):
+	paths = []
+	a_list = webpage.find_all('a')
+
+	for a in a_list:
+		href = a.get('href')
+		if href:
+			paths.append(href)
+
+	return paths
+		
+		
+to_visit = ['http://web-16.challs.olicyber.it/']
+discovered = {'http://web-16.challs.olicyber.it/'}
+visited = set()
+flag = ''
+
+while to_visit:
+	current_url = to_visit.pop()
+
+	if current_url in visited:
+		continue
+
+	visited.add(current_url)
+	
+	response = requests.get(current_url)
+	# timeout=5
+	webpage = BeautifulSoup(response.text, 'html.parser')
+
+	h1 = h1_scrape(webpage)
+	
+	'''
+	# debug =======================================================
+	print(
+		f"Visited: {len(visited)} | "
+		f"Discovered: {len(discovered)} | "
+		f"Queue: {len(to_visit)}", end = '\r')
+	# =============================================================
+	'''
+
+
+	if h1 and 'flag' in h1.text.lower():
+		flag = h1.text.strip()
+		break
+
+	# estrazione nuovi url
+	for path in href_scrape(webpage):
+		absolute_url = urljoin(current_url, path)
+		if absolute_url not in discovered:
+			discovered.add(absolute_url)
+			to_visit.append(absolute_url)
+
+if flag:
+	print(flag)
+else:
+	print('Flag not found')
