@@ -1,0 +1,16 @@
+COME SI USA:
+
+	0. Clona la cartella https://github.com/CameronLonsdale/MTP.git
+			git clone https://github.com/CameronLonsdale/MTP.git
+
+	1. Entra in MTP e crea un ambiente virtuale venv:
+			python3 -m venv venv
+
+	2. Attiva l'ambiente virtuale:
+			source venv/bin/activate			
+
+	3. Installiamo le dipendenze:
+			pip install -r requirements.txt
+
+	4. Installiamo il programma:
+			pip install .
