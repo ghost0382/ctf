@@ -1,0 +1,12 @@
+W3Schools (w3schools.com)	Python, C	Istruzione + Esercizi base e quiz nel browser	1 / 10
+LearnPython.org / Learn-C.org (learnpython.org, learn-c.org)	Python, C	Istruzione interattiva con editor di codice integrato	1.5 / 10
+Programiz (programiz.com)	Python, C	Istruzione guidata passo-passo e compilatore online	1.5 / 10
+Automate the Boring Stuff (automatetheboringstuff.com)	Python	Istruzione pratica focalizzata su scripting e automazione	2 / 10
+CS50P — Harvard (cs50.harvard.edu/python)	Python	Corso universitario gratuito con videolezioni ed esercizi autocorretti	2 / 10
+HackerRank (hackerrank.com)	Python, C	Allenamento con percorsi divisi per singolo argomento (cicli, array, puntatori)	2.5 / 10
+CodinGame (codingame.com)	Python, C	Allenamento ludico in cui scrivi codice per controllare videogiochi	2.5 / 10
+Codewars (codewars.com)	Python, C	Allenamento tramite sfide brevi (kata) ordinate per livello di difficoltà	3 / 10
+Exercism (exercism.org)	Python, C	Allenamento pratico con test automatici e correzione gratuita da parte di mentor	3 / 10
+CS50x — Harvard (cs50.harvard.edu/x)	C + Python	Corso universitario completo: le prime 5 settimane sono interamente in C (memoria, puntatori, algoritmi), la 6ª in Python	3.5 / 10
+Beej's Guide to C Programming (beej.us/guide/bgc)	C	Guida testuale completa per padroneggiare memoria, puntatori e programmazione di sistema	4 / 10
+LeetCode (leetcode.com — piano free)	Python, C	Allenamento avanzato su algoritmi e strutture dati	4.5 / 10

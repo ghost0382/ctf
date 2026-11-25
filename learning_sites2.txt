@@ -1,0 +1,23 @@
+
+Gandalf AI (gandalf.lakera.ai)AllenamentoGioco interattivo su browser per imparare le basi del Prompt Injection sull'intelligenza artificiale1 / 10
+CTF101 (ctf101.org)IstruzioneGuida enciclopedica testuale che spiega le tecniche base delle varie categorie CTF1.5 / 10
+Cybrary (cybrary.it — piano gratuito)IstruzioneVideocorsi introduttivi su fondamenti IT, reti e difesa informatica2 / 10
+TryHackMe (tryhackme.com — stanze free)Istruzione + AllenamentoPercorsi guidati con teoria e laboratori pratici eseguibili direttamente nel browser2 / 10
+picoCTF (picoctf.org)AllenamentoPiattaforma CTF educativa per principianti con sfide progressive su Linux, web, crittografia e forensics2.5 / 10
+HackThisSite (hackthissite.org)AllenamentoMissioni web classiche da risolvere nel browser (ispezione codice, form, input)2.5 / 10
+Hacker101 (hacker101.com)IstruzioneVideolezioni gratuite sulle vulnerabilità web e sulla metodologia Bug Bounty3 / 10
+OverTheWire — Bandit (overthewire.org)AllenamentoWargame su terminale SSH per imparare passo-passo i comandi base di Linux3 / 10
+LetsDefend (letsdefend.io — piano free)Istruzione + AllenamentoFormazione difensiva (Blue Team / SOC) con analisi di email di phishing e simulazione di incidenti3 / 10
+PortSwigger Web Security Academy (portswigger.net)Istruzione + AllenamentoCorsi completi e laboratori interattivi gratuiti sulla sicurezza delle applicazioni web3.5 / 10
+OWASP Juice Shop (owasp.org/www-project-juice-shop)AllenamentoApplicazione web intenzionalmente vulnerabile per esercitarsi sulle vulnerabilità OWASP Top 103.5 / 10
+UnderTheWire (underthewire.tech)AllenamentoWargame interattivo dedicato all'ambiente Windows e ai comandi PowerShell3.5 / 10
+CryptoHack (cryptohack.org)Istruzione + AllenamentoLezioni interattive e sfide di programmazione (Python) dedicate alla crittografia4 / 10
+Hacker101 CTF (ctf.hacker101.com)AllenamentoSfide CTF pratiche focalizzate sul web hacking in stile Bug Bounty4 / 10
+Root-Me (root-me.org)AllenamentoOltre 400 sfide CTF divise per categoria (web, rete, crypto, steganografia) senza guida passo-passo4.5 / 10
+OpenSecurityTraining2 (ost2.fyi)IstruzioneCorsi accademici gratuiti su architettura dei computer, Assembly e sicurezza a basso livello4.5 / 10
+pwn.college (pwn.college)Istruzione + AllenamentoCorso universitario aperto con lezioni video e laboratori pratici su Linux e sfruttamento binario5 / 10
+CyberDefenders (cyberdefenders.org — lab free)AllenamentoSfide difensive (Blue Team e Digital Forensics) basate sull'analisi di file reali (traffico di rete, log, dump)5 / 10
+Hack The Box — Starting Point (hackthebox.com)AllenamentoMacchine virtuali guidate per apprendere le fasi base del penetration testing5.5 / 10
+HackMyVM (hackmyvm.eu)AllenamentoMacchine virtuali vulnerabili da scaricare in locale (Boot2Root) senza guida integrata6 / 10
+VulnHub (vulnhub.com)AllenamentoArchivio gratuito di macchine virtuali vulnerabili da scaricare e attaccare in ambiente locale6.5 / 10
+CyberChallenge.IT (cyberchallenge.it)Istruzione + AllenamentoProgramma italiano (per studenti 16–24 anni) con lezioni universitarie e competizioni CTF nazionali6.5 / 10

@@ -1,0 +1,11 @@
+Real Python (realpython.com — articoli free)PythonApprofondimenti su meccanismi interni, gestione memoria, asyncio, decoratori e interazione con C (ctypes)4 / 10
+Advent of Code (adventofcode.com)Python, CSfide algoritmiche e di parsing: ottimo per ottimizzare velocità e uso della memoria in C e scrivere codice idiomatico in Python4.5 / 10
+Beej's Guide to Network Programming (beej.us/guide/bgnet)CLa guida di riferimento per padroneggiare i socket di rete, protocolli TCP/UDP e comunicazione a basso livello5 / 10
+CSES Problem Set (cses.fi/problemset)C, PythonRaccolta di problemi su strutture dati e algoritmi puri con limiti stringenti di tempo e memoria5 / 10
+Protohackers (protohackers.com)C, PythonSfide di programmazione di rete reale: devi costruire server TCP/UDP da zero che rispettano specifiche di protocollo5.5 / 10
+Cryptopals Crypto Challenges (cryptopals.com)Python (o C)64 sfide pratiche in cui implementi da zero algoritmi crittografici (inclusi hash, XOR, AES, RSA) e poi li violi sfruttandone i difetti6 / 10
+pwnable.kr (pwnable.kr)C + PythonWargame in cui leggi codice C vulnerabile (buffer overflow, format string, gestione heap) e scrivi script Python (pwntools) per sfruttarlo6 / 10
+CodeCrafters (codecrafters.io — sfide free)C, PythonProgetti guidati da costruire da zero senza librerie esterne (es. scrivere un proprio server HTTP, DNS, Redis o una shell Linux)6.5 / 10
+OSTEP Projects ([github.com/remzi-arpacidusseau/ostep-projects](https://github.com/remzi-arpacidusseau/ostep-projects))CProgetti universitari sui sistemi operativi: creazione di una shell UNIX, allocatori di memoria (malloc/free) e programmi multi-thread6.5 / 10
+ROP Emporium (ropemporium.com)C + PythonSfide mirate sullo sfruttamento binario moderno (Return-Oriented Programming) analizzando eseguibili compilati da C7 / 10
+Codeforces (codeforces.com)C, PythonProgrammazione competitiva avanzata per affinare al massimo efficienza algoritmica e gestione dei casi limite7.5 / 10
